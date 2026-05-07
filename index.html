@@ -85,6 +85,26 @@ body{
 
 /* ================= HOW DARE YOU ================= */
 
+#howDare{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:white;
+    font-size:45px;
+    display:none;
+
+    animation:zoom 1s infinite alternate;
+}
+
+@keyframes zoom{
+    from{
+        transform:translate(-50%,-50%) scale(1);
+    }
+    to{
+        transform:translate(-50%,-50%) scale(1.2);
+    }
+}
 
 /* ================= VIDEO ================= */
 
@@ -236,6 +256,8 @@ video{
 
     <img src="WhatsApp Image 2026-05-07 at 9.21.50 PM.jpeg" class="full-img">
 
+    <h1 id="howDare">😤 HOW DARE YOU 😤</h1>
+
     <button class="btn try-btn" onclick="backToQuestion()">
         TRY AGAIN
     </button>
@@ -335,21 +357,11 @@ video{
 
 function openPage(id){
 
-    // hide all pages
-    document.querySelectorAll(".page").forEach(page => {
-        page.style.display = "none";
+    document.querySelectorAll(".page").forEach(page=>{
+        page.style.display="none";
     });
 
-    // show selected page
-    let currentPage = document.getElementById(id);
-
-    if(id == "page1" || id == "page2" || id == "noPage" || id == "yesPage" || id == "videoPage"){
-        currentPage.style.display = "block";
-    }
-
-    else{
-        currentPage.style.display = "flex";
-    }
+    document.getElementById(id).style.display="flex";
 
 }
 
@@ -357,12 +369,21 @@ function openPage(id){
 
 function backToQuestion(){
 
+    document.getElementById("howDare").style.display="none";
 
     openPage("page2");
 
 }
 
+/* ================= HOW DARE ================= */
 
+document.querySelector(".no-btn").addEventListener("click",()=>{
+
+    setTimeout(()=>{
+        document.getElementById("howDare").style.display="block";
+    },300);
+
+});
 
 /* ================= VIDEO END ================= */
 

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise 💖</title>
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    font-family:Arial;
+}
+
+/* First Page */
+#firstPage{
+    width:100%;
+    height:100vh;
+    position:relative;
+}
+
+/* Full Image */
+#firstPage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Continue Button */
+#continueBtn{
+    position:absolute;
+    bottom:140px;
+    left:90%;
+    transform:translateX(-50%);
+    
+    padding:20px 50px;
+    border:none;
+    border-radius:30px;
+
+    background:white;
+    color:black;
+
+    font-size:24px;
+    cursor:pointer;
+
+    animation: glow 1s infinite alternate;
+}
+
+/* Glow Animation */
+@keyframes glow{
+    from{
+        transform:translateX(-50%) scale(1);
+    }
+    to{
+        transform:translateX(-50%) scale(1.1);
+    }
+}
+
+/* Second Page */
+#secondPage{
+    display:none;
+    height:100vh;
+
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
+
+    color:white;
+    text-align:center;
+
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+button{
+    padding:12px 20px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- First Page -->
+<div id="firstPage">
+
+    <img src="WhatsApp Image 2026-05-07 at 9.21.49 PM.jpeg">
+
+    <button id="continueBtn" onclick="nextPage()">
+        Continue 💖
+    </button>
+
+</div>
+
+<!-- Second Page -->
+<div id="secondPage">
+
+    <img src="WhatsApp Image 2026-05-07 at 9.21.49 PM.jpeg">
+
+    <button>YES 💕</button>
+    <button>NO 😒</button>
+
+</div>
+
+<script>
+
+function nextPage(){
+
+    document.getElementById("firstPage").style.display="none";
+
+    document.getElementById("secondPage").style.display="flex";
+
+}
+
+</script>
+
+</body>
+</html>

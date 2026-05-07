@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise 💖</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    overflow:hidden;
+}
+
+/* ================= PAGES ================= */
+
+.page{
+    width:100%;
+    height:100vh;
+    display:none;
+    position:relative;
+}
+
+.active{
+    display:flex;
+}
+
+/* ================= IMAGES ================= */
+
+.full-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+    position:absolute;
+    padding:15px 35px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:22px;
+    background:white;
+    color:black;
+}
+
+/* Continue button */
+.continue{
+    bottom:100px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* YES button */
+.yes-btn{
+    bottom:80px;
+    left:40px;
+}
+
+/* NO button */
+.no-btn{
+    bottom:80px;
+    right:40px;
+}
+
+/* TRY AGAIN */
+.try-btn{
+    bottom:80px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* RIGHT CONTINUE */
+.right-btn{
+    bottom:80px;
+    right:40px;
+}
+
+/* ================= HOW DARE YOU ================= */
+
+#howDare{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:white;
+    font-size:45px;
+    display:none;
+
+    animation:zoom 1s infinite alternate;
+}
+
+@keyframes zoom{
+    from{
+        transform:translate(-50%,-50%) scale(1);
+    }
+    to{
+        transform:translate(-50%,-50%) scale(1.2);
+    }
+}
+
+/* ================= VIDEO ================= */
+
+video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ================= GIFT PAGE ================= */
+
+#giftPage{
+    background:#6b4f3b;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+#giftBox{
+    font-size:120px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#giftBox:hover{
+    transform:scale(1.1);
+}
+
+/* surprise buttons */
+
+#surprises{
+    display:none;
+    margin-top:30px;
+    gap:15px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.surprise-btn{
+    padding:12px 25px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+/* ================= POPUP ================= */
+
+#popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.8);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:1000;
+}
+
+.popup-content{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    max-width:90%;
+    max-height:90%;
+    overflow:auto;
+
+    text-align:center;
+}
+
+/* popup images */
+
+.popup-img{
+    width:300px;
+    border-radius:15px;
+}
+
+/* side by side */
+
+.side-images{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.side-images img{
+    width:180px;
+    border-radius:15px;
+}
+
+/* ================= END PAGE ================= */
+
+#endPage{
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    background:linear-gradient(135deg,rgb(157, 45, 45));
+
+    color:white;
+}
+
+#endPage h1{
+    font-size:60px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+
+<div id="page1" class="page active">
+
+    <img src="WhatsApp Image 2026-05-07 at 9.21.49 PM.jpeg" class="full-img">
+
+    <button class="btn continue" onclick="openPage('page2')">
+        Continue 💖
+    </button>
+
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+
+<div id="page2" class="page">
+
+    <img src="WhatsApp Image 2026-05-07 at 9.21.49 PM copy.jpeg" class="full-img">
+
+    <button class="btn yes-btn" onclick="openPage('yesPage')">
+        YES 💖
+    </button>
+
+    <button class="btn no-btn" onclick="openPage('noPage')">
+        NO 😒
+    </button>
+
+</div>
+
+<!-- ================= NO PAGE ================= -->
+
+<div id="noPage" class="page">
+
+    <img src="WhatsApp Image 2026-05-07 at 9.21.50 PM.jpeg" class="full-img">
+
+    <h1 id="howDare">😤 HOW DARE YOU 😤</h1>
+
+    <button class="btn try-btn" onclick="backToQuestion()">
+        TRY AGAIN
+    </button>
+
+</div>
+
+<!-- ================= YES PAGE ================= -->
+
+<div id="yesPage" class="page">
+
+    <img src="WhatsApp Image 2026-05-07 at 9.21.50 PM (1).jpeg" class="full-img">
+
+    <button class="btn right-btn" onclick="openPage('videoPage')">
+        Continue 💖
+    </button>
+
+</div>
+
+<!-- ================= VIDEO PAGE ================= -->
+
+<div id="videoPage" class="page">
+
+    <video id="mainVideo" controls>
+        <source src="WhatsApp Video 2026-05-07 at 9.21.51 PM.mp4" type="video/mp4">
+    </video>
+
+    <button 
+        id="videoBtn"
+        class="btn right-btn"
+        style="display:none;"
+        onclick="openPage('giftPage')">
+
+        Continue 💖
+
+    </button>
+
+</div>
+
+<!-- ================= GIFT PAGE ================= -->
+
+<div id="giftPage" class="page">
+
+    <div id="giftBox" onclick="openGift()">
+        🎁
+    </div>
+
+    <div id="surprises">
+
+        <button class="surprise-btn" onclick="showPopup(1)">
+            Surprise 1
+        </button>
+
+        <button class="surprise-btn" onclick="showPopup(2)">
+            Surprise 2
+        </button>
+
+        <button class="surprise-btn" onclick="showPopup(3)">
+            Surprise 3
+        </button>
+
+        <button class="surprise-btn" onclick="showPopup(4)">
+            Surprise 4
+        </button>
+
+        <button class="surprise-btn" onclick="showPopup(5)">
+            Surprise 5
+        </button>
+
+        <button class="surprise-btn" onclick="showPopup(6)">
+            Surprise 6
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= POPUP ================= -->
+
+<div id="popup">
+
+    <div class="popup-content" id="popupContent">
+    </div>
+
+</div>
+
+<!-- ================= END PAGE ================= -->
+
+<div id="endPage" class="page">
+
+    <h1>Enjoy Your Day 💖</h1>
+
+</div>
+
+<script>
+
+/* ================= PAGE SWITCH ================= */
+
+function openPage(id){
+
+    document.querySelectorAll(".page").forEach(page=>{
+        page.style.display="none";
+    });
+
+    document.getElementById(id).style.display="flex";
+
+}
+
+/* ================= BACK ================= */
+
+function backToQuestion(){
+
+    document.getElementById("howDare").style.display="none";
+
+    openPage("page2");
+
+}
+
+/* ================= HOW DARE ================= */
+
+document.querySelector(".no-btn").addEventListener("click",()=>{
+
+    setTimeout(()=>{
+        document.getElementById("howDare").style.display="block";
+    },300);
+
+});
+
+/* ================= VIDEO END ================= */
+
+let video = document.getElementById("mainVideo");
+
+video.onended = function(){
+
+    document.getElementById("videoBtn").style.display="block";
+
+}
+
+/* ================= GIFT ================= */
+
+function openGift(){
+
+    document.getElementById("surprises").style.display="flex";
+
+}
+
+/* ================= POPUPS ================= */
+
+function showPopup(num){
+
+    let popup = document.getElementById("popup");
+
+    let content = document.getElementById("popupContent");
+
+    popup.style.display="flex";
+
+    /* Surprise 1 */
+    if(num==1){
+
+        content.innerHTML = `
+            <img src="WhatsApp Image 2026-05-07 at 9.21.53 PM.jpeg" class="popup-img">
+            <br><br>
+            <button onclick="closePopup()">Close</button>
+        `;
+
+    }
+
+    /* Surprise 2 */
+    else if(num==2){
+
+        content.innerHTML = `
+            <img src="WhatsApp Image 2026-05-07 at 9.21.54 PM.jpeg" class="popup-img">
+            <br><br>
+            <button onclick="closePopup()">Close</button>
+        `;
+
+    }
+
+    /* Surprise 3 */
+    else if(num==3){
+
+        content.innerHTML = `
+            <img src="WhatsApp Image 2026-05-07 at 9.37.33 PM.jpeg" class="popup-img">
+            <br><br>
+            <button onclick="closePopup()">Close</button>
+        `;
+
+    }
+
+    /* Surprise 4 VIDEO */
+    else if(num==4){
+
+        content.innerHTML = `
+            <video controls width="300">
+                <source src="WhatsApp Video 2026-05-07 at 9.38.11 PM.mp4" type="video/mp4">
+            </video>
+
+            <br><br>
+
+            <button onclick="closePopup()">Close</button>
+        `;
+
+    }
+
+    /* Surprise 5 */
+    else if(num==5){
+
+        content.innerHTML = `
+
+            <div class="side-images">
+
+                <img src="WhatsApp Image 2026-05-07 at 9.38.27 PM.jpeg">
+                <img src="WhatsApp Image 2026-05-07 at 9.38.29 PM.jpeg">
+                <img src="WhatsApp Image 2026-05-07 at 9.38.30 PM.jpeg">
+
+            </div>
+
+            <br>
+            <br><br>
+
+            <button onclick="closePopup()">Close</button>
+
+        `;
+
+    }
+    else if(num==6){
+        content.innerHTML =` <h2>Last but not least 💖</h2>
+
+            <br>
+
+            <img src="WhatsApp Image 2026-05-07 at 9.39.48 PM.jpeg" class="popup-img">
+
+            <br><br>
+
+            <button onclick="closePopup()">THE END ✨</button>
+
+        `;
+
+    }
+
+
+}
+
+/* ================= CLOSE ================= */
+
+function closePopup(){
+
+    document.getElementById("popup").style.display="none";
+
+}
+
+/* ================= THE END ================= */
+
+document.addEventListener("click",function(e){
+
+    if(e.target.innerText=="THE END ✨"){
+
+        closePopup();
+
+        openPage("endPage");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

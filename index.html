@@ -335,13 +335,21 @@ video{
 
 function openPage(id){
 
-    let pages = document.querySelectorAll(".page");
-
-    pages.forEach(function(page){
+    // hide all pages
+    document.querySelectorAll(".page").forEach(page => {
         page.style.display = "none";
     });
 
-    document.getElementById(id).style.display = "flex";
+    // show selected page
+    let currentPage = document.getElementById(id);
+
+    if(id == "page1" || id == "page2" || id == "noPage" || id == "yesPage" || id == "videoPage"){
+        currentPage.style.display = "block";
+    }
+
+    else{
+        currentPage.style.display = "flex";
+    }
 
 }
 

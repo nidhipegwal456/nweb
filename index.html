@@ -335,11 +335,13 @@ video{
 
 function openPage(id){
 
-    document.querySelectorAll(".page").forEach(page=>{
-        page.style.display="none";
+    let pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page){
+        page.style.display = "none";
     });
 
-    document.getElementById(id).style.display="flex";
+    document.getElementById(id).style.display = "flex";
 
 }
 
